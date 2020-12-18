@@ -8,11 +8,13 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name, length: { maximum: 40 }
     validates :infomation, length: { maximum: 1000 }
-    validates :category_id, numericality: { other_than: 1 }
-    validates :status_id
-    validates :shipping_id	
-    validates :prefecture_id	
-    validates :shipping_date_id	
+    with_options numericality: { other_than: 1 } do
+      validates :category_id
+      validates :status_id
+      validates :shipping_id	
+      validates :prefecture_id	
+      validates :shipping_date_id	
+    end
     validates :price
     validates :user
   end
