@@ -14,5 +14,4 @@ class Category < ActiveHash::Base
   ]
   include ActiveHash::Associations
   has_many_active_hash :items
-  en
   end
