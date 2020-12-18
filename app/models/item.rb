@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :status
   belongs_to_active_hash :shipping 
   belongs_to_active_hash :prefecture
+  belongs_to_active_hash :shipping_date
   with_options presence: true do
     validates :name, length: { maximum: 40 }
     validates :infomation, length: { maximum: 1000 }
