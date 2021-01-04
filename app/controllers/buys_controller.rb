@@ -1,5 +1,4 @@
 class BuysController < ApplicationController
-
   def index
     @buys = Buy.all
   end
@@ -7,5 +6,4 @@ class BuysController < ApplicationController
   def show
     @buys = Buy.all
   end
-
 end
