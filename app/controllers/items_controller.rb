@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
       @item.save
       redirect_to root_path
     else
-      render 'new'
+      render action: :new
     end
   end
 
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path
     else
-      render :edit
+      render action: :edit
     end
   end
 
