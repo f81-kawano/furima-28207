@@ -4,12 +4,11 @@ class BuysController < ApplicationController
    
   def index
     @buy_address = BuyAddress.new
-    if current_user.id == @item.user_id
+    if (current_user.id == @item.user_id) || @item.buy.present?
       redirect_to root_path
     else 
       render :index
     end
-
   end
 
   def create
@@ -27,7 +26,7 @@ class BuysController < ApplicationController
   def buy_params
     params.require(:buy_address)
           .permit(:postal_code, :prefecture_id, :city, :house_num, :building, :phone_num)
-          .merge(user_id: current_user.id, item_id: params[:item_id])
+          .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
