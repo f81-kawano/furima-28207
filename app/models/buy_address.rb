@@ -12,6 +12,8 @@ class BuyAddress
     validates :city
     validates :house_num
     validates :phone_num, format: { with: VALID_PHONE_NUMBER_REGEX, message: "Input only number" }
+    validates :user_id
+    validates :item_id
   end
 
   def save

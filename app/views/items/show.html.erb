@@ -32,10 +32,12 @@
         <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
 
         <%# 商品が売れていない場合はこちらを表示しましょう %>
-        <% else %>
+      <% elsif %>
         <% unless @item.buy.present? %>
           <%= link_to '購入画面に進む', item_buys_path(@item), class:"item-red-btn"%>
         <% end %>
+      <% else %>
+        <% @item.id == @item.buy %>
         <%# //商品が売れていない場合はこちらを表示しましょう %>
       <% end %>
     <% end %>

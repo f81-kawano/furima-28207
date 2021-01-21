@@ -9,6 +9,10 @@ RSpec.describe BuyAddress, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@buy_address).to be_valid
       end
+      it '建物が空' do
+        @buy_address.building = nil
+        expect(@buy_address).to be_valid
+      end
     end
 
     context '購入がうまくいかない' do
@@ -51,6 +55,14 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.phone_num = '090-12345-67890'
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Phone num Input only number")
+      end
+      it 'user_idが空' do
+        @buy_address.user_id = nil
+        @buy_address.valid?
+      end
+      it 'item_idが空' do
+        @buy_address.item_id = nil
+        @buy_address.valid?
       end
     end
   end
