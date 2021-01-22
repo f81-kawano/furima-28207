@@ -54,10 +54,14 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Phone num can't be blank")
       end
-      it '電話番号ハイフンがあり11桁以上である' do
-        @buy_address.phone_num = '090-12345-67890'
+      it '電話番号ハイフンがある' do
+        @buy_address.phone_num = '090-1234-5678'
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Phone num Input only number")
+      end
+      it '電話番号が12桁以上だと登録出来ない' do
+        @buy_address.phone_num = '090123456789'
+        @buy_address.valid?
       end
       it 'user_idが空' do
         @buy_address.user_id = nil
