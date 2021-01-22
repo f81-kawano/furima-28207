@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe BuyAddress, type: :model do
   before do
-    @user =FactoryBot.create(:user)
-    @item =FactoryBot.create(:item)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
     @buy_address = FactoryBot.build(:buy_address, user_id: @user.id, item_id: @item.id)
     sleep 0.05
   end
@@ -32,12 +32,12 @@ RSpec.describe BuyAddress, type: :model do
       it '郵便番号にハイフンがない' do
         @buy_address.postal_code = '1234567'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Postal code Input correctly")
+        expect(@buy_address.errors.full_messages).to include('Postal code Input correctly')
       end
       it '都道府県が空' do
         @buy_address.prefecture_id = 1
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Prefecture Select")
+        expect(@buy_address.errors.full_messages).to include('Prefecture Select')
       end
       it '市区町村が空' do
         @buy_address.city = nil
@@ -57,7 +57,7 @@ RSpec.describe BuyAddress, type: :model do
       it '電話番号ハイフンがある' do
         @buy_address.phone_num = '090-1234-5678'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Phone num Input only number")
+        expect(@buy_address.errors.full_messages).to include('Phone num Input only number')
       end
       it '電話番号が12桁以上だと登録出来ない' do
         @buy_address.phone_num = '090123456789'
