@@ -1,12 +1,12 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-   
+
   def index
     @buy_address = BuyAddress.new
     if (current_user.id == @item.user_id) || @item.buy.present?
       redirect_to root_path
-    else 
+    else
       render :index
     end
   end
@@ -35,7 +35,7 @@ class BuysController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: buy_params[:token],
